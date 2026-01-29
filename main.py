@@ -26,14 +26,13 @@ app = FastAPI(
 # add cors middleware for frontend integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # configure based on your frontend domain
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # simple in-memory rate limiting
-# in production, use redis or similar
 rate_limit_storage = defaultdict(list)
 RATE_LIMIT_REQUESTS = 10  # max requests per window
 RATE_LIMIT_WINDOW = 60  # window in seconds
@@ -135,7 +134,7 @@ async def upload_document(
             detail="File size exceeds 10MB limit"
         )
     
-    # save file temporarily
+  
     # create uploads directory if it doesn't exist
     os.makedirs("uploads", exist_ok=True)
     
